@@ -51,7 +51,7 @@ def advance(decision='D2hhPromptDst2D2RSLine'):
             break
         n += 1
         dec = evt['/Event/Strip/Phys/DecReports']
-        if dec.hasDecisionName("Stripping%sDecision" % decision):
+        if dec.hasDecisionName(f"Stripping{decision}Decision"):
             break
 
     return n
@@ -69,8 +69,8 @@ def advance_hlt(decision):
         n += 1
         found = False
         for loc in ['Hlt1', 'Hlt2']:
-            reports = evt[loc + "/DecReports"]
-            dec = "%sDecision" % decision
+            reports = evt[f"{loc}/DecReports"]
+            dec = f"{decision}Decision"
             rep = reports.decReport(dec)
             if rep and rep.decision():
                 found = True
@@ -107,10 +107,10 @@ IOHelper('ROOT').inputFiles(inputFiles)
 # Configure two instances of the TriggerTisTos tool to pick things up from the
 # split Hlt1 and Hlt2 locations.
 for stage in ('Hlt1', 'Hlt2'):
-    ToolSvc().addTool(TriggerTisTos, stage + "TriggerTisTos")
-    ttt = getattr(ToolSvc(), stage + "TriggerTisTos")
-    ttt.HltDecReportsLocation = stage + '/DecReports'
-    ttt.HltSelReportsLocation = stage + '/SelReports'
+    ToolSvc().addTool(TriggerTisTos, f"{stage}TriggerTisTos")
+    ttt = getattr(ToolSvc(), f"{stage}TriggerTisTos")
+    ttt.HltDecReportsLocation = f'{stage}/DecReports'
+    ttt.HltSelReportsLocation = f'{stage}/SelReports'
 
 # Configuration done, run time!
 appMgr = GP.AppMgr()

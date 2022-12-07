@@ -20,9 +20,7 @@ html_context = {
     'conf_py_path': '/',
 }
 
-html_static_path += [
-    f'_static',
-]
+html_static_path += ['_static']
 
 # Links to be ignored by the CI check
 linkcheck_ignore += [

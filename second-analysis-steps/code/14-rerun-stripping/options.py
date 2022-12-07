@@ -4,6 +4,7 @@ from a specific stripping version on a local MC DST file
 It is based on the minimal DaVinci DecayTreeTuple example
 """
 
+
 from StrippingConf.Configuration import StrippingConf, StrippingStream
 from StrippingSettings.Utils import strippingConfiguration
 from StrippingArchive.Utils import buildStreams
@@ -31,7 +32,7 @@ streams = buildStreams(stripping=strippingConfiguration(strip),
 line = 'D2hhPromptDst2D2KKLine'
 
 custom_stream = StrippingStream('CustomStream')
-custom_line = 'Stripping'+line 
+custom_line = f'Stripping{line}' 
 
 for stream in streams:
     for sline in stream.lines:
